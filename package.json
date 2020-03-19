@@ -1,0 +1,19 @@
+{
+  "name": "auditory",
+  "version": "1.0.0",
+  "description": "discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cs-miller/auditory.git"
+  },
+  "author": "Christopher Miller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cs-miller/auditory/issues"
+  },
+  "homepage": "https://github.com/cs-miller/auditory#readme"
+}
