@@ -1,6 +1,7 @@
 //@ts-check
-const _ = require('lodash/fp');
-const ytdl = require('ytdl-core');
+import _ from 'lodash/fp';
+import ytdl from 'ytdl-core';
+import { Message } from 'discord.js';
 
 module.exports = {
   name: 'play',
@@ -9,8 +10,10 @@ module.exports = {
    * @param {import('discord.js').Message} message
    * @param {any} args
    */
-  async execute(message, args) {
+  async execute(message: Message, args: [string]) {
+    //@ts-ignore
     const channel = message.member.voice.channel;
+    //@ts-ignore
     const connection = await channel.join();
 
     const url = _.head(args);

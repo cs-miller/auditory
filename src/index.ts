@@ -1,17 +1,20 @@
 //@ts-check
 require('dotenv').config();
-const _ = require('lodash/fp');
-const Discord = require('discord.js');
-const fs = require('fs');
-const path = require('path');
+import _ from 'lodash/fp';
+import Discord, { Message } from 'discord.js';
+import fs from 'fs';
+import path from 'path';
 
-const { logger } = require('./logger');
+import { logger } from './logger';
 
 const client = new Discord.Client();
-const commandCollection = new Discord.Collection();
+const commandCollection = new Discord.Collection<
+  string,
+  Function | undefined
+>();
 
 const commandPath = path.resolve(__dirname, './commands');
-const commandFiles = fs.readdirSync(commandPath);
+const commandFiles = _.filter(_.endsWith('.js'), fs.readdirSync(commandPath));
 
 for (let file of commandFiles) {
   const command = require(`./commands/${file}`);
@@ -24,7 +27,7 @@ client.once('ready', () => {
   logger.info('ready!');
 });
 
-client.on('message', async message => {
+client.on('message', async (message: Message) => {
   const startsWithPrefix = message.content.startsWith(prefix);
   if (!startsWithPrefix || message.author.bot) return;
   const [command, ...args] = _.flow(
@@ -38,6 +41,7 @@ client.on('message', async message => {
   logger.info('executing command:', command, 'with args:', args);
 
   try {
+    // @ts-ignore
     const result = await commandCollection.get(command).execute(message, args);
     logger.info('command:', command, ' completed with result:', result);
   } catch (err) {
