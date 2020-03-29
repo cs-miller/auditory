@@ -5,7 +5,8 @@
   "scripts": {
     "dev:compile": "tsc --watch",
     "dev:watch": "nodemon ./dist/index.js",
-    "dev": "NODE_ENV=\"development\" concurrently \"npm:dev:*\""
+    "dev": "NODE_ENV=\"development\" concurrently \"npm:dev:*\"",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -32,8 +33,9 @@
     "@types/node": "13.9.5",
     "@types/pino": "5.17.0",
     "@types/ws": "7.2.3",
-    "nodemon": "2.0.2",
     "concurrently": "5.1.0",
+    "jest": "^25.2.3",
+    "nodemon": "2.0.2",
     "pino-pretty": "3.6.1",
     "typescript": "3.8.3"
   }
