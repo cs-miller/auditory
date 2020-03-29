@@ -1,4 +1,3 @@
-//@ts-check
 require('dotenv').config();
 import _ from 'lodash/fp';
 import Discord, { Message } from 'discord.js';
@@ -7,11 +6,14 @@ import path from 'path';
 
 import { logger } from './logger';
 
+export type Command = {
+  name: string;
+  description: string;
+  execute: (message: Message, args: string[]) => Promise<string>;
+};
+
 const client = new Discord.Client();
-const commandCollection = new Discord.Collection<
-  string,
-  Function | undefined
->();
+const commandCollection = new Discord.Collection<string, Command | undefined>();
 
 const commandPath = path.resolve(__dirname, './commands');
 const commandFiles = _.filter(_.endsWith('.js'), fs.readdirSync(commandPath));
@@ -41,8 +43,10 @@ client.on('message', async (message: Message) => {
   logger.info('executing command:', command, 'with args:', args);
 
   try {
-    // @ts-ignore
-    const result = await commandCollection.get(command).execute(message, args);
+    const commandModule = commandCollection.get(command);
+    if (!commandModule) throw new Error('command not found');
+
+    const result = await commandModule.execute(message, args);
     logger.info('command:', command, ' completed with result:', result);
   } catch (err) {
     logger.error('command:', command, 'failed with error:', err);
