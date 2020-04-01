@@ -36,7 +36,7 @@
     "concurrently": "5.1.0",
     "jest": "25.2.4",
     "nodemon": "2.0.2",
-    "pino-pretty": "3.6.1",
+    "pino-pretty": "4.0.0",
     "typescript": "3.8.3"
   }
 }
