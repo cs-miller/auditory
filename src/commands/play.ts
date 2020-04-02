@@ -4,7 +4,7 @@ import { Message } from 'discord.js';
 
 export const name = 'play';
 export const description = 'Plays the audio of a youtube video';
-export const execute = async (message: Message, args: [string]) => {
+export const execute = async (message: Message, args: string[]) => {
   const channel = message?.member?.voice.channel;
   const connection = await channel?.join();
 
