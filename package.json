@@ -22,7 +22,7 @@
     "@discordjs/opus": "0.3.2",
     "discord.js": "12.2.0",
     "dotenv": "8.2.0",
-    "ffmpeg-static": "4.2.1",
+    "ffmpeg-static": "4.2.2",
     "lodash": "4.17.15",
     "pino": "6.2.0",
     "sodium": "3.0.2",
