@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/jest": "25.2.3",
-    "@types/lodash": "4.14.154",
+    "@types/lodash": "4.14.155",
     "@types/node": "13.13.9",
     "@types/pino": "5.20.0",
     "@types/ws": "7.2.4",
