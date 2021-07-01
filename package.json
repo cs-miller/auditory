@@ -40,6 +40,6 @@
     "pino-pretty": "4.8.0",
     "prettier": "2.3.2",
     "ts-jest": "25.5.1",
-    "typescript": "3.9.10"
+    "typescript": "4.3.5"
   }
 }
